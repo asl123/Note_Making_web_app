@@ -12,6 +12,7 @@ class NoteMaking extends Component {
       "February",
       "March",
       "April",
+      "May",
       "June",
       "July",
       "August",
@@ -40,7 +41,7 @@ class NoteMaking extends Component {
     let d =
       date.getDate() +
       " " +
-      months[date.getMonth() + 1] +
+      months[date.getMonth()] +
       "," +
       date.getFullYear();
     let id = notes.length + 1;
@@ -85,7 +86,7 @@ class NoteMaking extends Component {
       let d =
         date.getDate() +
         " " +
-        months[date.getMonth() + 1] +
+        months[date.getMonth()] +
         "," +
         date.getFullYear();
       filteredNotes = notes.filter((obj) => obj.date === d);
@@ -160,7 +161,7 @@ class NoteMaking extends Component {
               <React.Fragment>
                 <div className="row d-flex justify-content-center mb-2">
                   <h5>
-                    {date.getDate()} {months[date.getMonth() + 1]},
+                    {date.getDate()} {months[date.getMonth()]},
                     {date.getFullYear()}
                   </h5>
                 </div>
