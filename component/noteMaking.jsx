@@ -25,7 +25,7 @@ class NoteMaking extends Component {
   };
   onDateChange = (date) => {
     localStorage.setItem("date", date);
-    this.setState({ date });
+    this.setState({ date,selectedNote: {}, showEdit: 0 });
   };
   handleChange = (e) => {
     let { currentTarget: input } = e;
