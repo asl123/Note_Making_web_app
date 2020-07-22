@@ -26,7 +26,7 @@ class NoteMaking extends Component {
   };
   onDateChange = (date) => {
     localStorage.setItem("date", date);
-    this.setState({ date,selectedNote: {}, showEdit: 0 });
+    this.setState({ date });
   };
   handleChange = (e) => {
     let { currentTarget: input } = e;
@@ -38,14 +38,14 @@ class NoteMaking extends Component {
     e.preventDefault();
     const { date, note, months } = this.state;
     const { notes } = this.props;
+    if (notes.length > 0) {
+      var sortedNotes = notes.sort((a, b) => b.id - a.id);
+      var nextId = sortedNotes[0].id + 1;
+    }
+    nextId = nextId ? nextId : 1;
     let d =
-      date.getDate() +
-      " " +
-      months[date.getMonth()] +
-      "," +
-      date.getFullYear();
-    let id = notes.length + 1;
-    let obj = { id: id, date: d, title: note.title, content: note.content };
+      date.getDate() + " " + months[date.getMonth()] + "," + date.getFullYear();
+    let obj = { id: nextId, date: d, title: note.title, content: note.content };
     this.props.addToNotes(obj);
     let newNote = { title: "", content: "" };
     this.setState({ note: newNote });
@@ -170,7 +170,7 @@ class NoteMaking extends Component {
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">title</th>
+                      <th scope="col">Title</th>
                       <th> </th>
                       <th> </th>
                     </tr>
